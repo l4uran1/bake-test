@@ -18,7 +18,7 @@ class TwitterController extends Controller {
         }
         $user = $request->input('user');
         
-        $userTweets = Twitter::getUserTimeline();
+        $userTweets = Twitter::getUserTimeline(['count' => 15]);
 
         //return the tweets
         return $userTweets;
@@ -30,7 +30,7 @@ class TwitterController extends Controller {
         }
         $criteria = $request->input('criteria');
         
-        $lastTweets = Twitter::getSearch(['q' => '#'.$criteria]);
+        $lastTweets = Twitter::getSearch(['count' => 15, 'q' => '#'.$criteria]);
 
         //return the tweets
         return $lastTweets->statuses;
