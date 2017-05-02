@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TwitterController@viewHome');
+
+Route::get('/searchByUser', 'TwitterController@searchByUser');
+
+Route::get('/searchByCriteria', 'TwitterController@searchByCriteria');
