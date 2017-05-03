@@ -18,11 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('twitter/login', ['as' => 'twitter.login', function() {
-    // your SIGN IN WITH TWITTER  button should point to this route
+    // todo: your SIGN IN WITH TWITTER  button should point to this route
     $sign_in_twitter = true;
     $force_login = false;
 
-    // Make sure we make this request w/o tokens, overwrite the default values in case of login.
+    // Request w/o tokens, overwrite the default values in case of login.
     Twitter::reconfig(['token' => '', 'secret' => '']);
     $token = Twitter::getRequestToken(route('twitter.callback'));
 

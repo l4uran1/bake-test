@@ -21,7 +21,9 @@ function ajaxSearchByUser() {
                 if(data[i] !== undefined) {
                     $("#template1").append($("#twitterTmpl").tmpl({
                         twitterID: data[i].id,
-                        message: data[i].text
+                        message: data[i].text,
+                        name: data[i].name,
+                        screenName: data[i].screen_name
                     }));
                 }
             }
@@ -47,7 +49,9 @@ function ajaxSearchByCriteria() {
                 if(data[i] !== undefined) {
                     $("#template1").append($("#twitterTmpl").tmpl({
                         twitterID: data[i].id,
-                        message: data[i].text
+                        message: data[i].text,
+                        name: data[i].user.name,
+                        screenName: data[i].user.screen_name
                     }));
                 }
             }

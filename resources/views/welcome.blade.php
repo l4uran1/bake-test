@@ -81,6 +81,7 @@
                             <tr>
                                 <th>Twitter Id</th>
                                 <th>Message</th>
+                                <th>User</th>
                             </tr>
                         </thead>
                         <tbody id="template1"></tbody>
@@ -103,6 +104,7 @@
                 <tr>
                     <td>${twitterID}</td>
                     <td>${message}</td>
+                    <td><b>${name}</b> @${screenName}</td>
                 </tr>
             </script>
     </body>
