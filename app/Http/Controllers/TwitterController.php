@@ -18,7 +18,7 @@ class TwitterController extends Controller {
         }
         $user = $request->input('user');
         
-        $userTweets = Twitter::getUserTimeline(['count' => 15]);
+        $userTweets = Twitter::getUserTimeline(['count' => 15, 'screen_name' => $user]);
 
         //return the tweets
         return $userTweets;
