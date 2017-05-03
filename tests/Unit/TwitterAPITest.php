@@ -24,11 +24,12 @@ class twitterAPITest extends TestCase {
 
     public function testSearchByUser() {
 		// Calling main page
-		$response = $this->call('GET', '/searchByUser?user=user1');
-                var_dump($response);
-                die();
+		$response = $this->call('GET', '/searchByUser?user=hola');
+                $res = json_decode($response->content());
 
 		// Getting result, it should be equal to 200 (response OK)
 		$this->assertEquals(200, $response->status());
+                $this->assertCount(15, $res);
+                
     }
 }
