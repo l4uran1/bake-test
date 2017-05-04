@@ -11,10 +11,9 @@ function ajaxSearchByUser() {
         data: 'user='+user,
         beforeSend: function(data) {
             $("#template1").empty();
-            console.log(data, "databs");
         },
         error: function(data) {
-            console.log(data, "datae");
+            console.log(data, "error");
         },
         success:function(data) {
             for(var i = 0; i < data.length; i++) {
@@ -40,10 +39,9 @@ function ajaxSearchByCriteria() {
         data: 'criteria='+user,
         beforeSend: function(data) {
             $("#template1").empty();
-            console.log(data, "databs");
         },
         error: function(data) {
-            console.log(data, "datae");
+            console.log(data, "error");
         },
         success:function(data) {
             for(var i = 0; i < data.length; i++) {

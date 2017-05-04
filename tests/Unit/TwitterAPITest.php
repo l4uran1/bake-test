@@ -32,4 +32,15 @@ class twitterAPITest extends TestCase {
                 $this->assertCount(15, $res);
                 
     }
+    
+    public function testSearchByCriteria() {
+		// Calling main page
+		$response = $this->call('GET', '/searchByCriteria?criteria=php');
+                $res = json_decode($response->content());
+
+		// Getting result, it should be equal to 200 (response OK)
+		$this->assertEquals(200, $response->status());
+                $this->assertCount(15, $res);
+                
+    }
 }

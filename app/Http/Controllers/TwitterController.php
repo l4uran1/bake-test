@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Exceptions\TwitterApiException;
 use Twitter;
 
 class TwitterController extends Controller {
@@ -13,10 +14,11 @@ class TwitterController extends Controller {
     }
     
     public function searchByUser(Request $request) {
-        if(!$request->input('user')) {
-            echo "hello"; die();
+        try {
+            $user = $request->input('user');
+        } catch (Exception $e) {
+            return new TwitterApiException($e->getMessage());
         }
-        $user = $request->input('user');
         
         $userTweets = Twitter::getUserTimeline(['count' => 15, 'screen_name' => $user]);
 
@@ -25,10 +27,11 @@ class TwitterController extends Controller {
     }
     
     public function searchByCriteria(Request $request) {
-        if(!$request->input('criteria')) {
-            echo "hello"; die();
+        try {
+            $criteria = $request->input('sriteria');
+        } catch (Exception $e) {
+            throw new TwitterApiException($e->getMessage());
         }
-        $criteria = $request->input('criteria');
         
         $lastTweets = Twitter::getSearch(['count' => 15, 'q' => '#'.$criteria]);
 
