@@ -11,12 +11,13 @@ function ajaxSearchByUser() {
         data: 'user='+user,
         beforeSend: function() {
             $("#criteria").val('');
-            $("#template1").empty();
+            $("#template1").html("Please wait...");
         },
         error: function(data) {
             console.log(data, "error");
         },
         success:function(data) {
+            $("#template1").empty();
             if(data.length === 0) {
                 $("#template1").html('No results found with the user '+user);
             }
@@ -43,13 +44,13 @@ function ajaxSearchByCriteria() {
         data: 'criteria='+c,
         beforeSend: function(data) {
             $("#user").val('');
-            $("#template1").empty();
+            $("#template1").html("Please wait...");
         },
         error: function(data) {
             console.log(data, "error");
         },
         success:function(data) {
-            console.log(data.length, "ata");
+            $("#template1").empty();
             if(data.length === 0) {
                 $("#template1").html('No results found with the criteria '+user);
             }

@@ -66,7 +66,7 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="col-lg-6 col-md-6">
                                         <div class="input-group">
-                                            <input type="text" name="criteria" id="criteria" class="form-control" placeholder="Type a word">
+                                            <input type="text" name="criteria" id="criteria" class="form-control" placeholder="Type a word" value="php">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" onclick="ajaxSearchByCriteria();">Go!</button>
                                             </span>
