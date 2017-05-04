@@ -10,6 +10,7 @@ function ajaxSearchByUser() {
         dataType: 'JSON',
         data: 'user='+user,
         beforeSend: function() {
+            $("#criteria").val('');
             $("#template1").empty();
         },
         error: function(data) {
@@ -41,6 +42,7 @@ function ajaxSearchByCriteria() {
         dataType: 'JSON',
         data: 'criteria='+c,
         beforeSend: function(data) {
+            $("#user").val('');
             $("#template1").empty();
         },
         error: function(data) {
