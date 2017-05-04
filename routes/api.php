@@ -95,9 +95,14 @@ Route::get('twitter/logout', ['as' => 'twitter.logout', function() {
 }]);
 
 //returns a collection of the most recent Tweets posted by the user indicated by
-//the screen_name or user_id paramteres
-Route::get('/userTimeline', function() {
-    return Twitter::getUserTimeline(['screen_name' => 'thujohn', 'count' => 20, 'format' => 'json']);
+//the screen_name parameter
+Route::get('/getUserTimeline/{user}', function($user) {
+    return Twitter::getUserTimeline(['screen_name' => $user, 'count' => 15, 'format' => 'json']);
+});
+
+//returns a collection of the most recent Tweets posted by a criteria
+Route::get('/getSearch/{criteria}', function($criteria) {
+    return Twitter::getSearch(['q' => $criteria, 'count' => 15, 'format' => 'json']);
 });
 
                 
