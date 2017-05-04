@@ -85,8 +85,9 @@ Route::get('twitter/callback', ['as' => 'twitter.callback', function() {
 }]);
 
 Route::get('twitter/error', ['as' => 'twitter.error', function() {
-    // Something went wrong, add your own error handling here
-}]);
+    // Something went wrong
+    
+}], 'TwitterController@errorHandler');
 
 Route::get('twitter/logout', ['as' => 'twitter.logout', function() {
     Session::forget('access_token');

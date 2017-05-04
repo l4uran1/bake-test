@@ -9,13 +9,16 @@ function ajaxSearchByUser() {
         type: 'GET',
         dataType: 'JSON',
         data: 'user='+user,
-        beforeSend: function(data) {
+        beforeSend: function() {
             $("#template1").empty();
         },
         error: function(data) {
             console.log(data, "error");
         },
         success:function(data) {
+            if(data.length === 0) {
+                $("#template1").html('No results found with the user '+user);
+            }
             for(var i = 0; i < data.length; i++) {
                 if(data[i] !== undefined) {
                     $("#template1").append($("#twitterTmpl").tmpl({
@@ -31,12 +34,12 @@ function ajaxSearchByUser() {
 }
 
 function ajaxSearchByCriteria() {
-    var user = $("#criteria").val();
+    var c = $("#criteria").val();
     $.ajax({
         url: '/searchByCriteria',
         type: 'GET',
         dataType: 'JSON',
-        data: 'criteria='+user,
+        data: 'criteria='+c,
         beforeSend: function(data) {
             $("#template1").empty();
         },
@@ -44,6 +47,10 @@ function ajaxSearchByCriteria() {
             console.log(data, "error");
         },
         success:function(data) {
+            console.log(data.length, "ata");
+            if(data.length === 0) {
+                $("#template1").html('No results found with the criteria '+user);
+            }
             for(var i = 0; i < data.length; i++) {
                 if(data[i] !== undefined) {
                     $("#template1").append($("#twitterTmpl").tmpl({

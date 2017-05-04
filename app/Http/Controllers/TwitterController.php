@@ -6,6 +6,11 @@ use Twitter;
 
 class TwitterController extends Controller {
 
+    /**
+     * Function to show the home page
+     * @param Request $request
+     * @return type
+     */
     public function viewHome(Request $request) {
         //return the home view
         return view(
@@ -13,29 +18,44 @@ class TwitterController extends Controller {
         );
     }
     
+    public function errorHandler($error) {
+        return true;
+    }
+    
+    /**
+     * Function to search in Twitter by a specific user
+     * @param Request $request
+     * @return json
+     * @throws TwitterApiException
+     */
     public function searchByUser(Request $request) {
         try {
             $user = $request->input('user');
-        } catch (Exception $e) {
-            return new TwitterApiException($e->getMessage());
-        }
-        
-        $userTweets = Twitter::getUserTimeline(['count' => 15, 'screen_name' => $user]);
-
-        //return the tweets
-        return $userTweets;
-    }
-    
-    public function searchByCriteria(Request $request) {
-        try {
-            $criteria = $request->input('sriteria');
+            $userTweets = Twitter::getUserTimeline(['count' => 15, 'screen_name' => $user]);
         } catch (Exception $e) {
             throw new TwitterApiException($e->getMessage());
         }
         
-        $lastTweets = Twitter::getSearch(['count' => 15, 'q' => '#'.$criteria]);
-
         //return the tweets
-        return $lastTweets->statuses;
+        return $userTweets;
+    }
+    
+    /**
+     * Function to search in Twitter by criteria
+     * @param Request $request
+     * @return json
+     * @throws TwitterApiException
+     */
+    public function searchByCriteria(Request $request) {
+        try {
+            $criteria = $request->input('criteria');
+            $lastTweets = Twitter::getSearch(['count' => 15, 'q' => '#'.$criteria]);
+            $lastTweets = $lastTweets->statuses;
+        } catch (Exception $e) {
+            throw new TwitterApiException($e->getMessage());
+        }
+        
+        //return the tweets
+        return $lastTweets;
     }
 }
